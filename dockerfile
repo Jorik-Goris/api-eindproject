@@ -7,7 +7,6 @@ EXPOSE 8000
 COPY requirements.txt /code/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-RUN apk add --no-cache mariadb-dev gcc musl-dev python3-dev
 
 COPY ./app /code
 
