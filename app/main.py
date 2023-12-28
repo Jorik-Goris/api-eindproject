@@ -1,15 +1,14 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 import schemas
-from database import SessionLocal, engine
-from crud import get_tasks, get_task, get_user_tasks, create_user, create_task, update_task, delete_task, \
- get_tasks_by_category, get_user
-import models
+from app.database import SessionLocal, engine
+from app.crud import get_tasks, get_task, get_user_tasks, create_user, create_task, update_task, delete_task, \
+    get_tasks_by_category, get_user
 from schemas import UserCreate, TaskCreate, User, Task
 import os
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from app import auth
+from app.auth import auth  
 
 db_directory = './sqlitedb'
 
