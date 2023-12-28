@@ -5,7 +5,7 @@ WORKDIR /code
 EXPOSE 8000
 
 # Debugging: Print contents of the app directory before copy
-RUN ls -R /app
+RUN ls -R ./app
 
 COPY requirements.txt /code/requirements.txt
 
