@@ -10,7 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from app.auth import auth  
 
-db_directory = './sqlitedb'
+db_directory = '.\sqlitedb'
 
 if not os.path.exists(db_directory):
     os.makedirs(db_directory)
