@@ -10,12 +10,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from app.auth import auth  
 
-db_directory = '.\sqlitedb'
+print("We are in the main.......")
+if not os.path.exists('.\sqlitedb'):
+    print("Making folder.......")
+    os.makedirs('.\sqlitedb')
 
-if not os.path.exists(db_directory):
-    os.makedirs(db_directory)
-
+print("Creating tables.......")
 models.Base.metadata.create_all(bind=engine)
+print("Tables created.......")
 
 app = FastAPI()
 
