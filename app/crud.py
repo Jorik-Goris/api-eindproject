@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from app import auth
+import auth
 from models import User, Task
 from schemas import UserCreate, TaskCreate
 
