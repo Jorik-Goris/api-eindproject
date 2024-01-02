@@ -1,0 +1,187 @@
+<html>
+<head>
+        <style>
+
+        .get-requests,
+        .post-requests {
+             flex: 1;
+             padding: 20px;
+             margin: 10px;
+             background-color: #f0f0f0;
+             border-radius: 20px;
+
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            padding: 20px;
+            display: flex;
+        }
+
+        h1 {
+            color: #333;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+             color: grey !important;
+             margin-top: 20px;
+             margin-bottom: 10px;
+             font-size: 1.5em;
+        }
+
+        div {
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 8px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        strong {
+            color: #007bff;
+        }
+
+        h2 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 5px;
+        }
+    </style>
+    <script defer src="https://unpkg.com/alpinejs@2.8.2/dist/alpine.min.js"></script>
+    <title>Eindproject API development: task management</title>
+</head>
+<body>
+
+<div class="get-requests">
+<h1>GET requests</h1>
+<h2>Get all tasks</h2>
+    <div x-data="{
+        responsedata: null,
+        async getData() {
+            this.responsedata = await (await fetch('http://127.0.0.1:8000/tasks/')).json();
+        }
+    }">
+        <button x-on:click="getData">Send get request</button>
+        Data returned: <strong x-text="responsedata[0].title">Placeholder</strong>
+    </div>
+<br/>
+
+
+<h2>Get task based on task ID</h2>
+    <div x-data="{
+        task_id: '',
+        responsedata: null,
+        async getData() {
+            this.responsedata = await (await fetch(`http://127.0.0.1:8000/tasks/${this.task_id}`)).json();
+        }
+    }">
+        <input type="text" x-model="task_id" placeholder="Enter task_id">
+        <button x-on:click="getData">Send get request</button>
+        Data returned: <strong x-text="responsedata[0].title">Placeholder</strong>
+    </div>
+<br/>
+
+<h2>Get all tasks for a user by its user ID</h2>
+    <div x-data="{
+        user_id: '',
+        responsedata: null,
+        async getData() {
+            this.responsedata = await (await fetch(`http://127.0.0.1:8000/tasks/user/${this.user_id}`)).json();
+        }
+    }">
+        <input type="text" x-model="user_id" placeholder="Enter user_id">
+        <button x-on:click="getData">Send get request</button>
+        Data returned: <strong x-text="responsedata[0].title">Placeholder</strong>
+    </div>
+<br/>
+
+<h2>Get all tasks for a specific category</h2>
+   <div x-data="{
+        category: '',
+        responsedata: null,
+        async getData() {
+            this.responsedata = await (await fetch(`http://127.0.0.1:8000/category/${this.category}`)).json();
+        }
+    }">
+        <input type="text" x-model="category" placeholder="Enter category">
+        <button x-on:click="getData">Send get request</button>
+        Data returned: <strong x-text="responsedata[0].title">Placeholder</strong>
+    </div>
+</div>
+
+
+<div class="post-requests">
+ <div x-data="{
+        userResponsedata: null,
+        taskResponsedata: null,
+        postUserData: {
+            username: null,
+            password: null
+        },
+        postTaskData: {
+            title: null,
+            description: null,
+            due_date: null,
+            category: null,
+            is_complete: null
+        },
+        async createUser() {
+            this.userResponsedata = await (await fetch('http://127.0.0.1:8000/users/', {
+                method: 'POST',
+                body: JSON.stringify(this.postUserData),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            })).json();
+        },
+        async createTask() {
+            this.taskResponsedata = await (await fetch('http://127.0.0.1:8000/tasks/', {
+                method: 'POST',
+                body: JSON.stringify(this.postTaskData),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            })).json();
+        },
+    }">
+        <h1>POST requests</h1>
+        <!-- User creation -->
+        <h2>Create User</h2>
+        <input type="text" x-model="postUserData.username" placeholder="Username">
+        <input type="password" x-model="postUserData.password" placeholder="Password">
+        <!-- Add other input fields for user-related data -->
+        <button x-on:click="createUser">Create User</button>
+
+        <p>Data inserted for user with id: <strong x-text="userResponsedata.id"></strong></p>
+        <p>Username that was inserted: <strong x-text="userResponsedata.username"></strong></p>
+
+        <!-- Task creation -->
+        <h2>Create Task</h2>
+        <input type="text" x-model="postTaskData.title" placeholder="Task Title">
+        <input type="text" x-model="postTaskData.description" placeholder="Task Description">
+        <input type="text" x-model="postTaskData.due_date" placeholder="Due Date">
+        <input type="text" x-model="postTaskData.category" placeholder="Category">
+        <input type="checkbox" x-model="postTaskData.is_complete"> Is Complete
+        <!-- Add other input fields for task-related data -->
+        <button x-on:click="createTask">Create Task</button>
+
+        <p>Data inserted for task with id: <strong x-text="taskResponsedata.id"></strong></p>
+        <p>Title that was inserted: <strong x-text="taskResponsedata.title"></strong></p>
+    </div>
+</div>
+</body>
+</html>
