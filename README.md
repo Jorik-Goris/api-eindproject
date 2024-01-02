@@ -90,5 +90,9 @@ Om de frontend te hosten op Netlify en automatisch te voorzien van een SSL certi
 
 ![Screenshot 2024-01-02 at 11 20 59](https://github.com/Jorik-Goris/api-eindproject/assets/95848835/89484d31-b773-4239-a3d0-1e7c52028250)
 
+![Screenshot 2024-01-02 at 11 23 12](https://github.com/Jorik-Goris/api-eindproject/assets/95848835/526ca6df-d78b-4832-ba64-939b3eba07af)
+
+![Screenshot 2024-01-02 at 11 23 31](https://github.com/Jorik-Goris/api-eindproject/assets/95848835/541e1c84-487d-403f-9846-c19c35104b96)
+
 
 
