@@ -72,4 +72,23 @@ Om dit project te deployen op Okteto Cloud kan deze gebuild worden als docker im
 
 Deze wordt via de Github Actions pipeline automatisch gebuild bij een commit op de main branch.
 
-(Bij het deployen lijkt iets mis te gaan. Okteto Cloud logs duiden op een ModuleNotFoundError: No module named app en een 'from app.database import SessionLocal, engine' op lijn 4 in main.py. Deze lijnen zijn echter aangepast en de image is gerebuild, toch blijft de oude code deployen (die niet
+(Bij het deployen lijkt iets mis te gaan. Okteto Cloud logs duiden op een ModuleNotFoundError: No module named app en een 'from app.database import SessionLocal, engine' op lijn 4 in main.py. Deze lijnen zijn echter aangepast en de image is gerebuild, toch blijft de oude code deployen (die niet meer bestaat in de github repo.(bug?))
+
+
+## Frontend
+
+De frontend voor de api is gebouwd met AlpineJS en opgemaakt met CSS.
+![Screenshot 2024-01-02 at 11 15 11](https://github.com/Jorik-Goris/api-eindproject/assets/95848835/d41f7b4d-08d0-49ab-95c9-a3ab053eb4ca)
+
+### Host frontend op Netlify
+
+Om de frontend te hosten op Netlify en automatisch te voorzien van een SSL certificaat kan je volgende stappen volgen:
+
+1. Sign up op Netlify
+2. Geef toegang tot de betreffende Github repository
+3. Klik OK
+
+![Screenshot 2024-01-02 at 11 20 59](https://github.com/Jorik-Goris/api-eindproject/assets/95848835/89484d31-b773-4239-a3d0-1e7c52028250)
+
+
+
